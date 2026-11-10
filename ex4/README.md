@@ -1,0 +1,8 @@
+# Exercise 4 - report
+## Graph
+We implemented our solution with the complexity requirements in mind, first and foremost. Knowing that hash tables, which were required anyways, have a O(1) access time, we decided to make the most out of them by implementing the graph as a hash table that has the graph nodes as keys and other hash tables as values. These "second level" hash tables have neighbour nodes as keys and edges objects as values. This allows us to easily handle the edges, which would have been a much more significant challenge otherwise, and it greatly cuts down the time complexity of every function.
+For the same efficiency purposes we decided to save into the graph also the pointers to the hash and compare functions, as they're needed to create new hash tables whenever a new node is added into the graph, and also the number of edges, as computing it from scratch every time num_edges is called would make the implementation too slow.
+## Breadth-first visit
+Our bfs implementation is rather straightforward. We implemented the queue with an array. For every node at the start of the list we look at its neighbours (operation made easy by the get_neighbours function) and we check if they've been visited already or not (we inserted visited nodes in a hash table in order to retrieve them quickly). If they haven't, they get inserted in the hash table with the visited nodes and they get added to the back of the queue (which we created with an array). The front of the queue gets then moved onto the next element and the loop repeats.
+## Execution times
+As the complexity requirements have been met, the execution times are also as expected.
